@@ -96,6 +96,7 @@ newtype Lit
  deriving (Eq, Num, Ord, Storable)
 
 newtype Loc = Loc (ForeignPtr ())
+ deriving ( Eq, Show )
 
 data Arg
   = ArgV Int
