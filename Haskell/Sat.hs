@@ -100,9 +100,11 @@ newtype Loc = Loc (ForeignPtr ())
 data Arg
   = ArgV Int
   | ArgN Int
+ deriving ( Eq, Show )
 
 data Atm
   = Loc :@ [Arg]
+ deriving ( Eq, Show )
 
 neg :: Lit -> Lit
 neg x = -x
