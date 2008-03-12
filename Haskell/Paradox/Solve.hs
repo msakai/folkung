@@ -1,4 +1,4 @@
-module Paradox.Main where
+module Paradox.Solve where
 
 {-
 Paradox -- Copyright (c) 2003-2007, Koen Claessen, Niklas Sorensson
@@ -23,7 +23,7 @@ OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 -}
 
-import qualified Main
+import qualified Folkung
 import Flags
 
 import Form
@@ -59,12 +59,9 @@ import System
 ---------------------------------------------------------------------------
 -- main
 
-main :: IO ()
-main =
-  do putStrLn "Paradox, version 2.3, 2007-11-01."
-     --putStrLn "*** NOTE: THIS IS A NON-STANDARD, DELIBERATELY UNSOUND VERSION!"
-     Main.main solveProblem
-  
+solve :: Flags -> Problem -> IO Answer
+solve = Folkung.solve solveProblem
+
 -------------------------------------------------------------------------
 -- problem
 

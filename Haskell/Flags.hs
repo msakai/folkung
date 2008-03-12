@@ -1,5 +1,6 @@
 module Flags
   ( Flags(..)
+  , initFlags
   , getFlags
   , getTimeLeft
   , getTimeSpent

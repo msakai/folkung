@@ -1,4 +1,4 @@
-module Equinox.Main where
+module Equinox.Solve where
 
 {-
 Equinox -- Copyright (c) 2003-2007, Koen Claessen
@@ -24,19 +24,17 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 -}
 
 import Sat
-import qualified Main
+import qualified Folkung
 import Form
 import Flags
 import Equinox.FolSat
 
 ---------------------------------------------------------------------------
 -- main
-
-main :: IO ()
-main =
-  do putStrLn "Equinox, version 1.3, 2007-11-01."
-     Main.main solveProblem
   
+solve :: Flags -> Problem -> IO Answer
+solve = Folkung.solve solveProblem
+
 ---------------------------------------------------------------------------
 -- solve
 

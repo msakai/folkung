@@ -1,4 +1,4 @@
-module Main where
+module Folkung where
 
 {-
 Paradox/Equinox -- Copyright (c) 2003-2007, Koen Claessen, Niklas Sorensson
@@ -30,6 +30,9 @@ import System
 import Flags
 import ParseProblem
 import Clausify
+import Timeout ( timeout )
+
+import Data.Maybe ( fromMaybe )
 import IO( hSetBuffering, stdout, BufferMode(..) )
 
 import Output
@@ -42,29 +45,13 @@ main solveProblem =
   do hSetBuffering stdout LineBuffering
      theFlags <- getFlags
      let ?flags = theFlags
-     case time ?flags of
-       Just n ->
-         do timeoutVar <- newEmptyMVar
-
-            pid1 <- forkIO $
-              do try (main' solveProblem)
-                 putMVar timeoutVar False
-
-            pid2 <- forkIO $
-              do threadDelay (1000000 * n)
-                 putMVar timeoutVar True
-
-            timeout <- takeMVar timeoutVar
-            if timeout
-              then do killThread pid1
+     m <- timeout' (main' solveProblem)
+     case m of 
+       Nothing  -> do let ?flags = ?flags{ thisFile = unwords (files ?flags) }
                       putInfo ""
-                      putWarning ("TIMEOUT (" ++ show n ++ " seconds)")
-                      let ?flags = ?flags{ thisFile = unwords (files ?flags) }
+                      putWarning ("TIMEOUT (" ++ show (time ?flags) ++ " seconds)")
                       putResult Timeout
-              else do killThread pid2
-
-       Nothing ->
-         do main' solveProblem
+       _        -> return ()
 
 main' :: (?flags :: Flags) => ((?flags :: Flags) => [Clause] -> IO Answer) -> IO ()
 main' solveProblem =
@@ -74,22 +61,28 @@ main' solveProblem =
      sequence_
        [ do putOfficial ("PROBLEM: " ++ file)
             ins <- readProblemWithRoots ("" : map (++"/") (roots ?flags)) file
-            --sequence_ [ print inp | inp <- ins ]
+            let ?flags          = ?flags{ thisFile = file }
+            putOfficial ("SOLVING: " ++ file)
+            ans <- main'' solveProblem ins
+            putResult ans
+       | file <- files ?flags
+       ]
+        
+main'' :: (?flags :: Flags) => ((?flags :: Flags) => [Clause] -> IO Answer) -> Problem -> IO Answer
+main'' solveProblem ins =
+         do --sequence_ [ print inp | inp <- ins ]
             let (theory,obligs) = clausify ins
                 n               = length obligs
-            let ?flags          = ?flags{ thisFile = file }
-            
-            putOfficial ("SOLVING: " ++ file)
+
             case obligs of
               -- Satisfiable/Unsatisfiable
               [] ->
-                do ans <- solveProblem theory
-                   putResult ans
+                do solveProblem theory
               
               -- CounterSatisfiable/Theorem
               [oblig] ->
                 do ans <- solveProblem (theory ++ oblig)
-                   putResult (nega ans)
+                   return (nega ans)
               
               -- Unknown/Theorem
               obligs ->
@@ -104,14 +97,23 @@ main' solveProblem =
                               Unsatisfiable -> solveAll (i+1) obligs
                               _             -> return GaveUp
                    
-                   ans <- solveAll 1 obligs
-                   putResult ans
-       | file <- files ?flags
-       ]
-        
+                   solveAll 1 obligs
+
 require :: Bool -> IO () -> IO ()
 require False m = do m; exitWith (ExitFailure 1)
 require True  m = do return ()
+
+-- Used by Paradox.Solve.solve and Equinox.Solve.solve
+solve :: ((?flags :: Flags) => [Clause] -> IO Answer) -> Flags -> Problem -> IO Answer
+solve solveProblem theFlags problem = 
+  do let ?flags = theFlags
+     ans <- timeout' (main'' solveProblem problem)
+     return $ fromMaybe Timeout ans
+
+timeout' :: (?flags :: Flags) => IO a -> IO (Maybe a)
+timeout' f = case time ?flags of
+               Nothing -> fmap Just f
+               Just n  -> timeout (1000000 * n) f
 
 ---------------------------------------------------------------------------
 -- the end.
