@@ -27,14 +27,16 @@ import System
 import Flags
 import Form( Answer )
 
+import IO (hPutStrLn, stderr)
+
 ---------------------------------------------------------------------------
 -- outputs
 
 putInfo :: String -> IO ()
-putInfo s = putStrLn s
+putInfo s = hPutStrLn stderr s
 
 putOfficial :: String -> IO ()
-putOfficial s = putStrLn ("+++ " ++ s)
+putOfficial s = hPutStrLn stderr ("+++ " ++ s)
 
 putResult :: (?flags :: Flags) => Answer -> IO ()
 putResult ans =
@@ -54,16 +56,16 @@ putResult ans =
        return ()
 
 putWarning :: String -> IO ()
-putWarning s = putStrLn ("*** " ++ s)
+putWarning s = hPutStrLn stderr ("*** " ++ s)
 
 putFailure :: String -> IO a
 putFailure s = do putWarning s; exitWith (ExitFailure 1)
 
 putHeader :: String -> IO ()
-putHeader s = putStrLn ("=== " ++ s)
+putHeader s = hPutStrLn stderr ("=== " ++ s)
 
 putSubHeader :: String -> IO ()
-putSubHeader s = putStrLn ("--- " ++ s)
+putSubHeader s = hPutStrLn stderr ("--- " ++ s)
 
 ---------------------------------------------------------------------------
 -- the end.
