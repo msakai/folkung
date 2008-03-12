@@ -1,0 +1,13 @@
+Name: equinox
+Version: 2.3
+Cabal-Version: >= 1.2
+Copyright: 
+  Paradox/Equinox: 2003-2007, Koen Claessen, Niklas Sorensson
+  Minisat: 2003-2005, Niklas Een, Niklas Sorensson
+Synopsis: 
+Description:
+Build-Type: Simple
+
+Executable equinox
+  Build-depends: base, folkung
+  Main-is: equinox.hs
