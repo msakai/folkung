@@ -46,6 +46,10 @@ import Char
 
 import CPUTime
 
+#if __GLASGOW_HASKELL__ >= 606
+import Control.Monad.Instances () -- to get Functor (Either a)
+#endif
+
 -------------------------------------------------------------------------
 -- flags
 
@@ -241,9 +245,11 @@ unPico' = let c = 10^11 in (`div` c)
 
 data Arg a = MkArg [String] ([String] -> Either [String] (a, [String]))
 
+#if __GLASGOW_HASKELL__ < 606
 instance Functor (Either a) where
   fmap f (Left x)  = Left x
   fmap f (Right y) = Right (f y)
+#endif
 
 unit :: a -> Arg a
 unit x = MkArg [] (\s -> Right (x,s))
