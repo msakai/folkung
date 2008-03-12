@@ -55,7 +55,7 @@ import Foreign.Ptr           ( Ptr, FunPtr, nullPtr )
 import Foreign.ForeignPtr    ( ForeignPtr, newForeignPtr, withForeignPtr )
 import Foreign.Storable      ( peek )
 import Foreign.Marshal.Array ( withArray0, peekArray0 )
-import Foreign.Marshal.Alloc ( malloc, free )
+import Foreign.Marshal.Alloc ( alloca )
 import System.IO             ( FilePath )
 import Foreign.Storable      ( Storable )
 import Control.Exception     ( finally )
@@ -239,13 +239,11 @@ mkEqu x y = MiniSatM (\s -> s_equ s x y)
 mkXor x y = MiniSatM (\s -> s_xor s x y)
 mkIte x y z = MiniSatM (\s -> s_ite s x y z)
 mkAdd x y z = MiniSatM $ \s -> 
-    do cp <- malloc
-       sp <- malloc
-       s_add s x y z cp sp
+    alloca $ \cp ->
+    alloca $ \sp ->
+    do s_add s x y z cp sp
        c  <- peek cp
        s  <- peek sp
-       free cp
-       free sp
        return (c,s)
 
 verbose n = MiniSatM (\s -> s_verbose s (fromIntegral n))
