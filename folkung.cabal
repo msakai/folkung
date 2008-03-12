@@ -1,0 +1,73 @@
+Name: folkung
+Version: 2.3
+Cabal-Version: >= 1.2
+Copyright: 
+  Paradox/Equinox: 2003-2007, Koen Claessen, Niklas Sorensson
+  Minisat: 2003-2005, Niklas Een, Niklas Sorensson
+License-file: LICENSE
+Synopsis: 
+Description:
+Build-Type: Simple
+Extra-source-files: 
+    instantiate/MiniSatInstantiateClause.h
+    instantiate/Wrapper.h
+    minisat/current-base/Prop.h
+    minisat/current-base/Solver.h
+    minisat/current-base/SolverTypes.h
+    minisat/current-base/VarOrder.h
+    minisat/mtl/Alg.h
+    minisat/mtl/Heap.h
+    minisat/mtl/Map.h
+    minisat/mtl/Sort.h
+    minisat/mtl/Vec.h
+
+Flag split-base
+  Default: True
+
+Flag debug
+  Default: False
+
+Library
+  Build-depends: haskell98, mtl
+  if flag(split-base)
+        Build-depends: base >= 3.0, containers
+  else
+        Build-depends: base < 3.0
+  Extensions: CPP 
+  -- Cabal-1.2 doesn't seem to parse this, using glasgow-exts instead:
+  -- Typeoperators Generics Rank2Types ImplicitParams ForeignFunctionInterface GeneralizedNewtypeDeriving
+  Ghc-options: -O2 -static -fglasgow-exts
+  -- -fno-exceptions gets rid of the -pgml g++ requirement on OS X
+  Cc-options: -Wall -ffloat-store -fno-exceptions
+  if flag(debug)
+    Cc-options: -O0 -ggdb -DDEBUG
+  else
+    Cc-options: -O3 -DNDEBUG
+  Hs-source-dirs: Haskell
+  Install-includes: Wrapper.h
+  Include-dirs: instantiate minisat/mtl minisat/current-base
+  Extra-libraries: stdc++ 
+  C-sources: minisat/current-base/Solver.cpp minisat/current-base/Prop.cpp instantiate/MiniSatWrapper.cpp instantiate/MiniSatInstantiateClause.cpp
+  Exposed-modules:
+    Flags
+    Form
+    Name
+    Folkung
+    Parsek
+    ParseProblem
+    Equinox.Solve
+    Paradox.Solve
+  Other-modules:
+    Clausify
+    Sat
+    Output
+    Str
+    Timeout
+    Equinox.ConSat
+    Equinox.Fair
+    Equinox.FolSat
+    Equinox.TermSat
+    Paradox.AnalysisTypes
+    Paradox.Flatten
+    Paradox.Instantiate
+    Paradox.SolveInstances
