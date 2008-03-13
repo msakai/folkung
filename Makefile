@@ -4,7 +4,7 @@ MINISAT = minisat/current-base
 INST    = instantiate
 HASKELL = Haskell
 OBJS    = $(MINISAT)/Solver.or $(MINISAT)/Prop.or $(INST)/MiniSatWrapper.or $(INST)/MiniSatInstantiateClause.or
-HFLAGS  = -cpp -lstdc++ -fglasgow-exts -O3 -I$(INST) -I$(MINISAT)
+HFLAGS  = -static -cpp -lstdc++ -fglasgow-exts -O3 -I$(INST) -I$(MINISAT)
 GHC     = ghc
 
 OS      = $(shell uname)
@@ -13,7 +13,8 @@ OS      = $(shell uname)
 ifneq (,$(findstring Darwin,$(OS)))
        # OS X doesn't support static linking (missing crt0.o)
 else
-       HFLAGS += -static -optl-static
+       # Disabled static linking for now, since it requires lots of extra libs on Linux
+       #HFLAGS += -optl-static
 endif
 
 # Special stuff for Cygwin
