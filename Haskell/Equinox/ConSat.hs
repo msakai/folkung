@@ -269,10 +269,8 @@ addClause xs =
 
        _ ->
          do xs'' <- sequence [ norm x | x <- xs' ]
-            --lift (putStrLn ("  " ++ show xs'))
             --lift (putStrLn "")
             --lift (hFlush stdout)
-            -- -- lift (putStrLn ("SAT: " ++ concat (intersperse " " (map show xs''))))
             liftS (Sat.addClause [ x | Lit x <- xs'' ])
             return ()
  where
