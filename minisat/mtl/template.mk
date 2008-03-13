@@ -75,7 +75,7 @@ lib$(LIB).a lib$(LIB)d.a:
 ## Clean rule
 clean:
 	@rm -f $(EXEC) $(EXEC)_profile $(EXEC)_debug $(EXEC)_release $(EXEC)_static \
-	  $(COBJS) $(PCOBJS) $(DCOBJS) $(RCOBJS) *.core depend.mak lib$(LIB).a lib$(LIB)d.a
+	  $(COBJS) $(PCOBJS) $(DCOBJS) $(RCOBJS) *.core depend.mk lib$(LIB).a lib$(LIB)d.a
 
 ## Make dependencies
 depend.mk: $(CSRCS) $(CHDRS)
