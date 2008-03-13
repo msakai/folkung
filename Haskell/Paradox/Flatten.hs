@@ -154,7 +154,9 @@ findClique ts units = S.toList (largestClique S.empty graph)
     cl'   = a `S.insert` largestClique S.empty subgr
     subgr = M.fromList [ (x, xs `S.intersection` bs)
                        | x <- S.toList bs
-                       , let xs = fromJust (M.lookup x gr')
+                       , let xs = case M.lookup x gr' of
+                                    Just a -> a
+                                    Nothing -> error "clique: not in table"
                        ]
 
   pairs []     = []
@@ -169,6 +171,7 @@ definitions cs = ([ f | (_, Fun f _) <- list ], defCs, coreCs)
   deepTerms =
     [ t'
     | t <- S.toList (subterms cs)
+    , typ t /= bool
     , let (_,t') = normalize t
     , isOkTerm (t' `S.member` ts) t'
     ]
@@ -274,7 +277,9 @@ flatten assignCons ls = simplify (defs ++ flatLs)
       Just ci                       -> ci
       Nothing 
         | tdomain (typ t) == Just 1 -> Fun (elt 1) []
-        | otherwise                 -> Var (fromJust (M.lookup t tab))
+        | otherwise                 -> Var (case M.lookup t tab of
+                                              Just t' -> t'
+                                              Nothing -> error ("flatten: not in var-table: " ++ show t))
 
   defs =
     [ Neg (Fun f (map var ts) :=: Var v)
