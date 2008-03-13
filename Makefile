@@ -1,21 +1,26 @@
-#-- Add this when compiling on Cygwin
-
-#export EXTRACFLAGS=-mno-cygwin
-
-export HFLAGS += -static -optl-static
-
 #-- Variables
 
 MINISAT = minisat/current-base
 INST    = instantiate
 HASKELL = Haskell
-
-
-#-- Variables
-
 OBJS    = $(MINISAT)/Solver.or $(MINISAT)/Prop.or $(INST)/MiniSatWrapper.or $(INST)/MiniSatInstantiateClause.or
-HFLAGS  += -cpp -lstdc++ -fglasgow-exts -O3 -I$(INST) -I$(MINISAT)
+HFLAGS  = -cpp -lstdc++ -fglasgow-exts -O3 -I$(INST) -I$(MINISAT)
 GHC     = ghc
+
+OS      = $(shell uname)
+
+# Special stuff for OS X
+ifneq (,$(findstring Darwin,$(OS)))
+       # OS X doesn't support static linking (missing crt0.o)
+else
+       HFLAGS += -static -optl-static
+endif
+
+# Special stuff for Cygwin
+ifneq (,$(findstring CYGWIN,$(OS)))
+    export EXTRACFLAGS=-mno-cygwin
+endif
+
 
 .PHONY: all mk-minisat mk-instantiate mk-haskell install clean
 
