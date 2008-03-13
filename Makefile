@@ -4,7 +4,7 @@ MINISAT = minisat/current-base
 INST    = instantiate
 HASKELL = Haskell
 OBJS    = $(MINISAT)/Solver.or $(MINISAT)/Prop.or $(INST)/MiniSatWrapper.or $(INST)/MiniSatInstantiateClause.or
-HFLAGS  = -static -cpp -lstdc++ -fglasgow-exts -O3 -I$(INST) -I$(MINISAT)
+HFLAGS  = -static -cpp -lstdc++ -fglasgow-exts -O3 -i$(HASKELL) -I$(INST) -I$(MINISAT)
 GHC     = ghc
 
 OS      = $(shell uname)
@@ -48,12 +48,12 @@ mk-haskell: paradox equinox
 #-- Paradox
 
 paradox: Haskell/*.hs Haskell/Paradox/*.hs paradox/paradox.hs $(OBJS)
-	$(GHC) $(HFLAGS)  --make paradox/paradox.hs -o paradox/paradox
+	$(GHC) $(HFLAGS) --make paradox/paradox.hs $(OBJS) -o paradox/paradox
 
 #-- Equinox
 
 equinox: Haskell/*.hs Haskell/Equinox/*.hs equinox/equinox.hs $(OBJS)
-	$(GHC) $(HFLAGS) --make equinox/equinox.hs -o equinox/equinox
+	$(GHC) $(HFLAGS) --make equinox/equinox.hs $(OBJS) -o equinox/equinox
 
 #-- Install
 
