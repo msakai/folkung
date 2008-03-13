@@ -5,7 +5,7 @@
 ##        "make d"  for a debug version (no optimizations).
 ##        "make"    for the standard version (optimized, but with debug information and assertions active)
 
-CSRCS     ?= $(wildcard *.C)
+CSRCS     ?= $(wildcard *.cpp)
 CHDRS     ?= $(wildcard *.h)
 COBJS     ?= $(addsuffix .o, $(basename $(CSRCS)))
 
@@ -57,7 +57,7 @@ lib$(LIB)d.a:	$(filter-out Main.od, $(DCOBJS))
 
 
 ## Build rule
-%.o %.op %.od %.or:	%.C
+%.o %.op %.od %.or:	%.cpp
 	@echo Compiling: "$@ ( $< )"
 	@$(CXX) $(CFLAGS) -c -o $@ $<
 
