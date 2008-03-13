@@ -4,6 +4,7 @@ Cabal-Version: >= 1.2
 Copyright: 
   Paradox/Equinox: 2003-2007, Koen Claessen, Niklas Sorensson
   Minisat: 2003-2005, Niklas Een, Niklas Sorensson
+License: OtherLicense
 License-file: LICENSE
 Synopsis: 
 Description:
