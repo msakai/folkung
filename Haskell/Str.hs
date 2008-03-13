@@ -51,7 +51,7 @@ instance Ord Str where
 -}
 ---------------------------------------------------------------------------
 -- str
-
+-- {-
 data Str
   = MkAtom !Int [Int] String
 
@@ -96,7 +96,7 @@ str =
                      n' `seq` writeIORef cnt n'
                      writeIORef tab (M.insert s at t)
                      return at
-
+-- -}
 ---------------------------------------------------------------------------
 -- hash stuff
 
