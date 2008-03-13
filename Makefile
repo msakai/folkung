@@ -14,13 +14,13 @@ HASKELL = Haskell
 main: mk-minisat mk-instantiate mk-haskell
 
 mk-minisat:
-	make Solver.or -C $(MINISAT)
-	make Prop.or   -C $(MINISAT)
+	$(MAKE) Solver.or -C $(MINISAT)
+	$(MAKE) Prop.or   -C $(MINISAT)
 
 mk-instantiate:
-	make MiniSatWrapper.or           -C $(INST)
-	make MiniSatInstantiateClause.or -C $(INST)
+	$(MAKE) MiniSatWrapper.or           -C $(INST)
+	$(MAKE) MiniSatInstantiateClause.or -C $(INST)
 
 mk-haskell:
-	make -C $(HASKELL)
+	$(MAKE) -C $(HASKELL)
 
