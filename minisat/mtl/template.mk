@@ -59,12 +59,12 @@ lib$(LIB)d.a:	$(filter-out Main.od, $(DCOBJS))
 ## Build rule
 %.o %.op %.od %.or:	%.cpp
 	@echo Compiling: "$@ ( $< )"
-	@$(CXX) $(CFLAGS) -c -o $@ $<
+	$(CXX) $(CFLAGS) -c -o $@ $<
 
 ## Linking rules (standard/profile/debug/release)
 $(EXEC) $(EXEC)_profile $(EXEC)_debug $(EXEC)_release $(EXEC)_static:
 	@echo Linking: "$@ ( $^ )"
-	@$(CXX) $^ $(LFLAGS) -o $@
+	$(CXX) $^ $(LFLAGS) -o $@
 
 ## Library rule
 lib$(LIB).a lib$(LIB)d.a:
