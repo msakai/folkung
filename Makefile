@@ -22,6 +22,12 @@ ifneq (,$(findstring CYGWIN,$(OS)))
     export EXTRACFLAGS=-mno-cygwin
 endif
 
+#-- Install directories
+
+prefix = /usr/local
+exec_prefix = ${prefix}
+bindir = ${exec_prefix}/bin
+
 
 .PHONY: all mk-minisat mk-instantiate mk-haskell install clean
 
@@ -52,6 +58,9 @@ equinox: Haskell/*.hs Haskell/Equinox/*.hs equinox/equinox.hs $(OBJS)
 #-- Install
 
 install: 
+	install -d $(bindir)
+	install paradox/paradox $(bindir)
+	install equinox/equinox $(bindir)
 
 #-- Cleaning up
 
