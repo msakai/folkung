@@ -4,10 +4,32 @@ Cabal-Version: >= 1.2
 Copyright: 
   Paradox/Equinox: 2003-2007, Koen Claessen, Niklas Sorensson
   Minisat: 2003-2005, Niklas Een, Niklas Sorensson
+Author: Koen Claessen, Niklas Sorensson
+Category: Math
+Maintainer: Koen Claessen <koen@chalmers.se>
+Stability: Experimental
 License: OtherLicense
 License-file: LICENSE
-Synopsis: 
+Homepage: http://www.cs.chalmers.se/~koen/folkung/
+Synopsis: First-order logic theorem prover and model finder library.
 Description:
+  Folkung is a library which implements 
+  Equinox, an automated theorem prover for pure first-order logic with equality,
+  and Paradox, a finite-domain model finder for pure first-order logic with equality.
+  .
+  Equinox actually implements a hierarchy of logics, realized as a stack of theorem 
+  provers that use abstraction refinement to talk with each other. In the bottom 
+  sits an efficient SAT solver (MiniSat).
+  .
+  The main aims of Equinox are (1) to be a theorem prover that performs well at large, 
+  automatically generated problems, coming up in for example formal verification areas, 
+  and (2) to be able to provide understandable feedback about failed proof attempts.
+  .
+  Paradox is a MACE-style model finder, which means that it translates a first-order problem 
+  into a sequence of SAT problems, which are solved by a SAT solver (in our case MiniSat).
+  .
+  Paradox is the proud winner of the SAT/Models division of the CASC World Championship 
+  on First-Order Automated Theorem Proving in 2003, 2004, 2005 and 2006.
 Build-Type: Simple
 Extra-source-files: 
     instantiate/MiniSatInstantiateClause.h
