@@ -103,12 +103,10 @@ module Parsek
   
 import Control.Monad
   ( MonadPlus(..)
-  , guard
   )
 
 import Data.List
   ( union
-  , intersperse
   )
 
 import Data.Char

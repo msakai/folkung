@@ -54,7 +54,6 @@ import Form( Symbol )
 import Flags
 
 import Data.Maybe
-import Data.Set( Set )
 import qualified Data.Set as S
 import Data.Map( Map )
 import qualified Data.Map as M

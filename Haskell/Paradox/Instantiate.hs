@@ -25,13 +25,9 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import Form hiding ( Form(..) )
 import Name
-import Paradox.AnalysisTypes
 import Flags
 
-import Data.Set( Set )
 import qualified Data.Set as S
-import Data.Map( Map )
-import qualified Data.Map as M
 import Data.List hiding ( insert, delete, union )
 
 

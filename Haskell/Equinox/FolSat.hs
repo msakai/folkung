@@ -24,14 +24,13 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 -}
 
 import Form
-import Name( prim, tr )
+import Name( prim )
 import Equinox.Fair
 import Equinox.TermSat hiding ( Lit(..) )
 import Equinox.TermSat ( Lit )
 import qualified Equinox.TermSat as T
 import Flags
 
-import Data.Set( Set )
 import qualified Data.Set as S
 import Data.Map( Map )
 import qualified Data.Map as M

@@ -59,7 +59,7 @@ Library
   Extensions: CPP 
   -- Cabal-1.2 doesn't seem to parse this, using glasgow-exts instead:
   -- Typeoperators Generics Rank2Types ImplicitParams ForeignFunctionInterface GeneralizedNewtypeDeriving
-  Ghc-options: -O2 -static -fglasgow-exts
+  Ghc-options: -O2 -static -fglasgow-exts -fwarn-unused-imports
   -- -fno-exceptions gets rid of the -pgml g++ requirement on OS X
   Cc-options: -Wall -ffloat-store -fno-exceptions
   if flag(debug)

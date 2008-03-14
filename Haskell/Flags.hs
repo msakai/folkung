@@ -35,13 +35,8 @@ import System.Environment
   ( getArgs
   )
 
-import Data.List
-  ( groupBy
-  , intersperse
-  , (\\)
-  )
-
 import Data.Char
+import Data.List (groupBy, intersperse)
 
 import System.CPUTime
 import System.Exit

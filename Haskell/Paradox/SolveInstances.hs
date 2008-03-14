@@ -30,12 +30,9 @@ import Name
 import Flags
 import Paradox.Instantiate
 import Output
-import Paradox.AnalysisTypes
 
 import Control.Monad
-import Data.Set( Set )
 import qualified Data.Set as S
-import Data.Map( Map )
 import qualified Data.Map as M
 import Data.List( sortBy, intersperse )
 import Data.IORef

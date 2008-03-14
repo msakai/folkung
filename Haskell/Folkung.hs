@@ -29,8 +29,6 @@ import ParseProblem
 import Clausify
 import Timeout ( timeout )
 
-import Control.Concurrent
-import Control.Exception
 import Data.Maybe ( fromMaybe )
 import System.Exit (exitWith, ExitCode(..))
 import System.IO( hSetBuffering, stdout, BufferMode(..) )

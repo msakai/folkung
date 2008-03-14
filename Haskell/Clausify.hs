@@ -34,9 +34,7 @@ import Flags
 
 import Data.Set( Set )
 import qualified Data.Set as S
-import Data.Map( Map )
-import qualified Data.Map as M
-import Data.List( maximumBy, minimumBy, partition, nub )
+import Data.List( maximumBy, minimumBy, nub )
 import Control.Monad.State
 import Control.Monad.Reader
 

@@ -25,17 +25,12 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import Data.Char
   ( isSpace
-  , isAlpha
   , isAlphaNum
-  , isDigit
   , isUpper
-  , isLower
   )
 
 import Data.List
   ( intersperse
-  , (\\)
-  , tails
   , nub
   )
 
@@ -52,13 +47,7 @@ import System.IO
   )
 
 import System.IO.Error as IO
-  ( ioError
-  , userError
-  , try
-  )
-
-import Control.Monad
-  ( guard
+  ( try
   )
 
 import Data.Set( Set )

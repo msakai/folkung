@@ -25,22 +25,12 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import Form
 import Name
-import Paradox.AnalysisTypes
 import Paradox.Instantiate
 
-import Data.Set( Set )
 import qualified Data.Set as S
 import Data.Map( Map )
 import qualified Data.Map as M
-import Data.List ( (\\), groupBy, sort, sortBy, minimumBy, partition )
-
-import Data.Maybe
-  ( fromJust
-  )
-
-import Control.Monad
-  ( mplus
-  )
+import Data.List ( (\\), groupBy, sort, minimumBy, partition )
 
 
 -------------------------------------------------------------------------
