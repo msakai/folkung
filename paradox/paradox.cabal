@@ -1,14 +1,26 @@
 Name: paradox
 Version: 2.3
 Cabal-Version: >= 1.2
-License: OtherLicense
-License-file: LICENSE
+Build-Type: Simple
 Copyright: 
   Paradox/Equinox: 2003-2007, Koen Claessen, Niklas Sorensson
   Minisat: 2003-2005, Niklas Een, Niklas Sorensson
-Synopsis: 
+Author: Koen Claessen, Niklas Sorensson
+Category: Math
+Maintainer: Koen Claessen <koen@chalmers.se>
+Stability: Experimental
+License: OtherLicense
+License-file: LICENSE
+Homepage: http://www.cs.chalmers.se/~koen/folkung/
+Synopsis: First-order logic model finder.
 Description:
-Build-Type: Simple
+  Paradox is a finite-domain model finder for pure first-order logic with equality.
+  .
+  Paradox is a MACE-style model finder, which means that it translates a first-order problem 
+  into a sequence of SAT problems, which are solved by a SAT solver (in our case MiniSat).
+  .
+  Paradox is the proud winner of the SAT/Models division of the CASC World Championship 
+  on First-Order Automated Theorem Proving in 2003, 2004, 2005 and 2006.
 
 Executable paradox
   Build-depends: base, folkung

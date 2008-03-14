@@ -1,14 +1,28 @@
 Name: equinox
 Version: 2.3
 Cabal-Version: >= 1.2
-License: OtherLicense
-License-file: LICENSE
+Build-Type: Simple
 Copyright: 
   Paradox/Equinox: 2003-2007, Koen Claessen, Niklas Sorensson
   Minisat: 2003-2005, Niklas Een, Niklas Sorensson
-Synopsis: 
+Author: Koen Claessen, Niklas Sorensson
+Category: Math
+Maintainer: Koen Claessen <koen@chalmers.se>
+Stability: Experimental
+License: OtherLicense
+License-file: LICENSE
+Homepage: http://www.cs.chalmers.se/~koen/folkung/
+Synopsis: First-order logic theorem prover.
 Description:
-Build-Type: Simple
+  Equinox is an automated theorem prover for pure first-order logic with equality.
+  .
+  Equinox actually implements a hierarchy of logics, realized as a stack of theorem 
+  provers that use abstraction refinement to talk with each other. In the bottom 
+  sits an efficient SAT solver (MiniSat).
+  .
+  The main aims of Equinox are (1) to be a theorem prover that performs well at large, 
+  automatically generated problems, coming up in for example formal verification areas, 
+  and (2) to be able to provide understandable feedback about failed proof attempts.
 
 Executable equinox
   Build-depends: base, folkung
