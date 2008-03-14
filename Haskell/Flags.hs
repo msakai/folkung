@@ -35,17 +35,16 @@ import System.Environment
   ( getArgs
   )
 
-import System
-
-import List
+import Data.List
   ( groupBy
   , intersperse
   , (\\)
   )
 
-import Char
+import Data.Char
 
-import CPUTime
+import System.CPUTime
+import System.Exit
 
 #if __GLASGOW_HASKELL__ >= 606
 import Control.Monad.Instances () -- to get Functor (Either a)

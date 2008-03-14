@@ -28,6 +28,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import Form
 import Name
+
 import Data.Set( Set )
 import qualified Data.Set as S
 import Data.Map( Map )
@@ -45,12 +46,12 @@ import Data.STRef
   , writeSTRef
   )
 
-import Char
+import Data.Char
   ( ord
   , chr
   )
 
-import List
+import Data.List
   ( nub
   )
 

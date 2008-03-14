@@ -25,18 +25,19 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import Form
 import Name( prim, tr )
-import List hiding ( union, insert, intersect, delete )
-import Maybe
 import Equinox.Fair
 import Equinox.TermSat hiding ( Lit(..) )
 import Equinox.TermSat ( Lit )
 import qualified Equinox.TermSat as T
+import Flags
+
 import Data.Set( Set )
 import qualified Data.Set as S
 import Data.Map( Map )
 import qualified Data.Map as M
-import IO
-import Flags
+import Data.List hiding ( union, insert, intersect, delete )
+import Data.Maybe
+import System.IO
 import Control.Monad
 
 prove :: Flags -> [Clause] -> IO Bool

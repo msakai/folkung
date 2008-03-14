@@ -25,25 +25,23 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import Form
 import Name
+import Paradox.AnalysisTypes
+import Paradox.Instantiate
+
 import Data.Set( Set )
 import qualified Data.Set as S
 import Data.Map( Map )
 import qualified Data.Map as M
-import List ( (\\), sortBy, minimumBy, partition )
-import Paradox.AnalysisTypes
-import Paradox.Instantiate
-import Maybe
+import Data.List ( (\\), groupBy, sort, sortBy, minimumBy, partition )
+
+import Data.Maybe
   ( fromJust
   )
 
-import Monad
+import Control.Monad
   ( mplus
   )
 
-import List
-  ( groupBy
-  , sort
-  )
 
 -------------------------------------------------------------------------
 -- macify

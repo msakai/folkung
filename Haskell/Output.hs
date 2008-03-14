@@ -23,11 +23,11 @@ OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 -}
 
-import System
 import Flags
 import Form( Answer )
 
-import IO (hPutStrLn, stderr)
+import System.Exit
+import System.IO (hPutStrLn, stderr)
 
 ---------------------------------------------------------------------------
 -- outputs

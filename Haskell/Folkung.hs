@@ -24,16 +24,16 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 -}
 
 import Form
-import Control.Concurrent
-import Control.Exception
-import System
 import Flags
 import ParseProblem
 import Clausify
 import Timeout ( timeout )
 
+import Control.Concurrent
+import Control.Exception
 import Data.Maybe ( fromMaybe )
-import IO( hSetBuffering, stdout, BufferMode(..) )
+import System.Exit (exitWith, ExitCode(..))
+import System.IO( hSetBuffering, stdout, BufferMode(..) )
 
 import Output
 

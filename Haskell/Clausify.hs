@@ -30,14 +30,15 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 import Form hiding ( Signed(..) )
 import qualified Form
 import Name
+import Flags
+
 import Data.Set( Set )
 import qualified Data.Set as S
 import Data.Map( Map )
 import qualified Data.Map as M
-import List( maximumBy, minimumBy, partition, nub )
+import Data.List( maximumBy, minimumBy, partition, nub )
 import Control.Monad.State
 import Control.Monad.Reader
-import Flags
 
 ----------------------------------------------------------------------
 -- clausify

@@ -51,7 +51,7 @@ Flag debug
   Default: False
 
 Library
-  Build-depends: haskell98, mtl
+  Build-depends: mtl
   if flag(split-base)
         Build-depends: base >= 3.0, containers
   else

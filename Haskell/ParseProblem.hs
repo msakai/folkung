@@ -23,13 +23,7 @@ OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 -}
 
-import System
-  ( exitWith
-  , ExitCode(..)
-  , getEnv
-  )
-
-import Char
+import Data.Char
   ( isSpace
   , isAlpha
   , isAlphaNum
@@ -38,33 +32,41 @@ import Char
   , isLower
   )
 
-import List
+import Data.List
   ( intersperse
   , (\\)
   , tails
   , nub
   )
 
-import IO
+import System.Environment (getEnv)
+
+import System.Exit
+  ( exitWith
+  , ExitCode(..)
+  )
+
+import System.IO
   ( hFlush
   , stdout
+  )
+
+import System.IO.Error as IO
+  ( ioError
+  , userError
   , try
   )
 
-import System.IO.Error
-  ( ioError
-  , userError
-  )
-
-import Monad
+import Control.Monad
   ( guard
   )
+
+import Data.Set( Set )
+import qualified Data.Set as S
 
 import Form
 import Name
 import Output
-import Data.Set( Set )
-import qualified Data.Set as S
 import Parsek as P
 
 -------------------------------------------------------------------------

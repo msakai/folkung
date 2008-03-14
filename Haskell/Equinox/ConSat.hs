@@ -46,14 +46,15 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 -}
 
 import qualified Sat
+import Flags
+
 import Data.Set( Set )
 import qualified Data.Set as S
 import Data.Map( Map )
 import qualified Data.Map as M
-import IO
-import Flags
 import Control.Monad
-import List( intersperse )
+import Data.List( intersperse )
+import System.IO
 
 data Lit
   = Lit Sat.Lit

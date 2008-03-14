@@ -25,33 +25,32 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import qualified Folkung
 import Flags
-
 import Form
 import Name
-import Data.Set( Set )
-import qualified Data.Set as S
-import Data.Map( Map )
-import qualified Data.Map as M
 import Paradox.Flatten
 import Paradox.Instantiate
 import Paradox.AnalysisTypes
 import Paradox.SolveInstances
-
 import Output
 
-import IO
+import Data.Set( Set )
+import qualified Data.Set as S
+import Data.Map( Map )
+import qualified Data.Map as M
+
+import System.IO
   ( hFlush
   , stdout
   )
 
-import List
+import Data.List
   ( group
   , sort
   , nub
   , intersperse
   )
 
-import System
+import System.Exit
   ( exitWith
   , ExitCode(..)
   )
